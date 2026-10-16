@@ -19,7 +19,12 @@ variable "instance_names" {
 
 resource "aws_s3_bucket" "one" {
   bucket = "my-project-artifact-041517177599"
-  versioning {
-    enabled = true
+}
+
+resource "aws_s3_bucket_versioning" "one" {
+  bucket = aws_s3_bucket.one.id
+
+  versioning_configuration {
+    status = "Enabled"
   }
 }
